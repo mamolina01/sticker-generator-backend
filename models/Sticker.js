@@ -8,7 +8,6 @@ const StickerSchema = Schema({
   betweenStreets: {
     type: String,
     required: true,
-    unique: true,
   },
   neighborhood: {
     type: String,

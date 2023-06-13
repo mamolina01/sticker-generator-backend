@@ -1,2 +1,0 @@
-db user: mamolinadev
-db pass: pDxFM0UCshCuW880
