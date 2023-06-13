@@ -11,34 +11,37 @@ const { jwtValidator } = require("../middlewares/jwtValidator");
 const router = Router();
 
 const {
-	createUser,
-	loginUser,
-	revalidateToken,
+  createUser,
+  loginUser,
+  revalidateToken,
 } = require("../controllers/auth");
 
 router.post(
-	"/register",
-	[
-		check("name", "El nombre es obligatorio.").not().isEmpty(),
-		check("email", "El email es obligatorio.").isEmail(),
-		check("password", "El password debe tener minimo 6 caracteres.").isLength({
-			min: 6,
-		}),
-		fileValidator,
-	],
-	createUser
+  "/register",
+  [
+    check("name", "Name is required.").not().isEmpty(),
+    check("email", "Email is required.").isEmail(),
+    check(
+      "password",
+      "Password must have a minimum of six characters ."
+    ).isLength({
+      min: 6,
+    }),
+    fileValidator,
+  ],
+  createUser
 );
 
 router.post(
-	"/",
-	[
-		check("email", "El email es obligatorio.").isEmail(),
-		check("password", "El password es obligatorio.").not().isEmpty(),
-		fileValidator,
-	],
-	loginUser
+  "/",
+  [
+    check("email", "Email is required.").isEmail(),
+    check("password", "Password is required.").not().isEmpty(),
+    fileValidator,
+  ],
+  loginUser
 );
 
-router.get("/renew",jwtValidator, revalidateToken);
+router.get("/renew", jwtValidator, revalidateToken);
 
 module.exports = router;

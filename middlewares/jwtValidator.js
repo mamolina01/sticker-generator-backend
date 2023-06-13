@@ -7,7 +7,7 @@ const jwtValidator = (req, res = response, next) => {
 	if (!token) {
 		return res.status(401).json({
 			ok: false,
-			msg: "No hay token en la peticion",
+			msg: "Must send a token.",
 		});
 	}
 
@@ -19,7 +19,7 @@ const jwtValidator = (req, res = response, next) => {
 		console.log(error);
 		return res.status(401).json({
 			ok: false,
-			msg: "Token no valido",
+			msg: "Token invalid.",
 		});
 	}
 	next();
