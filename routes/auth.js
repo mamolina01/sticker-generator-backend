@@ -19,11 +19,11 @@ const {
 router.post(
   "/register",
   [
-    check("name", "Name is required.").not().isEmpty(),
-    check("email", "Email is required.").isEmail(),
+    check("name", "Nombre es requerido").not().isEmpty(),
+    check("email", "Email es requerido").isEmail(),
     check(
       "password",
-      "Password must have a minimum of six characters ."
+      "La contraseña debe tener minimo 6 caracteres"
     ).isLength({
       min: 6,
     }),
@@ -35,8 +35,8 @@ router.post(
 router.post(
   "/",
   [
-    check("email", "Email is required.").isEmail(),
-    check("password", "Password is required.").not().isEmpty(),
+    check("email", "Email es requerido").isEmail(),
+    check("password", "Password es requerido").not().isEmpty(),
     fileValidator,
   ],
   loginUser

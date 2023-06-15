@@ -12,7 +12,7 @@ const createUser = async (req, res = response) => {
 		if (user) {
 			return res.status(400).json({
 				ok: false,
-				msg: "Exists a user exists with this email",
+				msg: "Existe un usuario con este email",
 			});
 		}
 
@@ -37,7 +37,7 @@ const createUser = async (req, res = response) => {
 		console.log(error);
 		res.status(500).json({
 			ok: false,
-			msg: "Contact with administrator.",
+			msg: "Contactese con un administrador",
 		});
 	}
 };
@@ -51,7 +51,7 @@ const loginUser = async (req, res = response) => {
 		if (!user) {
 			return res.status(400).json({
 				ok: false,
-				msg: "Invalid credentials.",
+				msg: "Credenciales invalidas",
 			});
 		}
 
@@ -60,7 +60,7 @@ const loginUser = async (req, res = response) => {
 		if (!validPassword) {
 			return res.status(400).json({
 				ok: false,
-				msg: "Invalid credentials.",
+				msg: "Credenciales invalidas",
 			});
 		}
 
@@ -77,7 +77,7 @@ const loginUser = async (req, res = response) => {
 		console.log(error);
 		res.status(500).json({
 			ok: false,
-			msg: "Contact with administrator.",
+			msg: "Contactese con un administrador",
 		});
 	}
 };

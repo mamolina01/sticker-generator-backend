@@ -26,13 +26,12 @@ router.get("/", getStickers);
 router.post(
   "/",
   [
-    check("address", "Address is required.").not().isEmpty(),
-    check("betweenStreets", "Between Streets is required.").not().isEmpty(),
-    check("neighborhood", "Neighborhood is required.").not().isEmpty(),
-    check("nameReceiver", "Name Receiver is required.").not().isEmpty(),
-    check("telephone", "Telephone is required.").not().isEmpty(),
-    check("date", "Date is required.").custom(isDate),
-    check("nameReceiver", "Name Receiver is required.").not().isEmpty(),
+    check("address", "La direccion es requerida").not().isEmpty(),
+    check("betweenStreets", "Entre Calles es requerido").not().isEmpty(),
+    check("neighborhood", "Barrio es requerido").not().isEmpty(),
+    check("nameReceiver", "Nombre destinatario es requerido").not().isEmpty(),
+    check("telephone", "Telefono es requerido").not().isEmpty(),
+    check("date", "Fecha es requerido").custom(isDate),
     fileValidator,
   ],
   createSticker

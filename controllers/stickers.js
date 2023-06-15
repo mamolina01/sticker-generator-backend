@@ -3,118 +3,118 @@ const Sticker = require("../models/Sticker");
 const User = require("../models/User");
 
 const getStickers = async (req, res = response) => {
-  try {
-    const user = await User.findById(req.uid);
+	try {
+		const user = await User.findById(req.uid);
 
-    const stickers = await Sticker.find({ user: user });
-    return res.json({
-      ok: true,
-      stickers,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      ok: false,
-      msg: "Contact with administrator.",
-    });
-  }
+		const stickers = await Sticker.find({ user: user });
+		return res.json({
+			ok: true,
+			data: stickers,
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({
+			ok: false,
+			msg: "Contactese con un administrador",
+		});
+	}
 };
 
 const createSticker = async (req, res = response) => {
-  const sticker = new Sticker(req.body);
+	const sticker = new Sticker(req.body);
 
-  try {
-    sticker.user = req.uid;
+	try {
+		sticker.user = req.uid;
 
-    let stickerSaved = await sticker.save();
+		let stickerSaved = await sticker.save();
 
-    res.json({
-      ok: true,
-      sticker: stickerSaved,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      ok: false,
-      msg: "Contact with administrator.",
-    });
-  }
+		res.json({
+			ok: true,
+			data: stickerSaved,
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({
+			ok: false,
+			msg: "Contactese con un administrador",
+		});
+	}
 };
 
 const updateSticker = async (req, res = response) => {
-  const stickerId = req.params.id;
-  const id = req.uid;
-  try {
-    const sticker = await Sticker.findById(stickerId);
-    if (!sticker) {
-      res.status(404).json({
-        ok: false,
-        msg: "Doesn't exists any sticker with that id.",
-      });
-    }
+	const stickerId = req.params.id;
+	const id = req.uid;
+	try {
+		const sticker = await Sticker.findById(stickerId);
+		if (!sticker) {
+			res.status(404).json({
+				ok: false,
+				msg: "No existe ningun sticker con ese id",
+			});
+		}
 
-    if (sticker.user.toString() !== id) {
-      return res.status(401).json({
-        ok: false,
-        msg: "You don't have permission to edit this sticker.",
-      });
-    }
+		if (sticker.user.toString() !== id) {
+			return res.status(401).json({
+				ok: false,
+				msg: "No tienes permisos para editar este sticker",
+			});
+		}
 
-    const newSticker = {
-      ...req.body,
-      user: id,
-    };
+		const newSticker = {
+			...req.body,
+			user: id,
+		};
 
-    const stickerUpdated = await Sticker.findByIdAndUpdate(
-      sticker.id,
-      newSticker,
-      { new: true }
-    );
+		const stickerUpdated = await Sticker.findByIdAndUpdate(
+			sticker.id,
+			newSticker,
+			{ new: true }
+		);
 
-    res.json({
-      ok: true,
-      sticker: stickerUpdated,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      ok: false,
-      msg: "Contact with administrator.",
-    });
-  }
+		res.json({
+			ok: true,
+			data: stickerUpdated,
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({
+			ok: false,
+			msg: "Contactese con un administrador",
+		});
+	}
 };
 
 const deleteSticker = async (req, res = response) => {
-  const stickerId = req.params.id;
-  const id = req.uid;
-  try {
-    const sticker = await Sticker.findById(stickerId);
-    if (!sticker) {
-      res.status(404).json({
-        ok: false,
-        msg: "Doesn't exists any sticker with that id.",
-      });
-    }
+	const stickerId = req.params.id;
+	const id = req.uid;
+	try {
+		const sticker = await Sticker.findById(stickerId);
+		if (!sticker) {
+			res.status(404).json({
+				ok: false,
+				msg: "No existe ningun sticker con ese id",
+			});
+		}
 
-    if (sticker.user.toString() !== id) {
-      return res.status(401).json({
-        ok: false,
-        msg: "You don't have permission to delete this sticker.",
-      });
-    }
+		if (sticker.user.toString() !== id) {
+			return res.status(401).json({
+				ok: false,
+				msg: "No tienes permisos para eliminar este sticker",
+			});
+		}
 
-    const stickerDeleted = await Sticker.findByIdAndDelete(sticker.id);
+		const stickerDeleted = await Sticker.findByIdAndDelete(sticker.id);
 
-    res.json({
-      ok: true,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      ok: false,
-      msg: "Contact with administrator.",
-    });
-  }
+		res.json({
+			ok: true,
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({
+			ok: false,
+			msg: "Contactese con un administrador",
+		});
+	}
 };
 
 module.exports = { getStickers, createSticker, updateSticker, deleteSticker };

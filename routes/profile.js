@@ -21,10 +21,10 @@ const {
 router.post(
   "/",
   [
-    check("name", "Name is required.").not().isEmpty(),
-    check("logo", "Logo is required.").not().isEmpty(),
-    check("instagram", "Instagram is required.").not().isEmpty(),
-    check("whatsapp", "Whatsapp is required.").not().isEmpty(),
+    check("name", "Nombre es requerido").not().isEmpty(),
+    check("logo", "Logo es requerido").not().isEmpty(),
+    check("instagram", "Instagram es requerido").not().isEmpty(),
+    check("whatsapp", "Whatsapp es requerido").not().isEmpty(),
     fileValidator,
   ],
   setProfile
