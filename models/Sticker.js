@@ -1,10 +1,10 @@
 const { Schema, model } = require("mongoose");
 
 const StickerSchema = Schema({
-	id: {
-		type: String,
-		required: true,
-	},
+	// id: {
+	// 	type: String,
+	// 	required: true,
+	// },
 	address: {
 		type: String,
 		required: true,
@@ -12,6 +12,7 @@ const StickerSchema = Schema({
 	betweenStreets: {
 		type: String,
 		required: true,
+		unique:false,
 	},
 	neighborhood: {
 		type: String,
