@@ -92,7 +92,7 @@ const updateProfile = async (req, res = response) => {
 
 		res.json({
 			ok: true,
-			profile: ProfileUpdated,
+			data: ProfileUpdated,
 		});
 	} catch (error) {
 		console.log(error);

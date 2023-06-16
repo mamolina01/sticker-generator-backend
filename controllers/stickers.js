@@ -1,12 +1,17 @@
 const { response } = require("express");
 const Sticker = require("../models/Sticker");
 const User = require("../models/User");
+const moment = require("moment");
 
 const getStickers = async (req, res = response) => {
 	try {
 		const user = await User.findById(req.uid);
 
 		const stickers = await Sticker.find({ user: user });
+		// let tempStickers = stickers;
+		// console.log(stickers.date)
+		// tempStickers.date = moment(stickers.date,"MM-DD-YYYY")
+		// console.log(tempStickers);
 		return res.json({
 			ok: true,
 			data: stickers,
