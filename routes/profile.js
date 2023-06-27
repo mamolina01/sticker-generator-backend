@@ -32,6 +32,16 @@ router.post(
 
 router.get("/", getProfile);
 
-router.put("/:id", jwtValidator, updateProfile);
+router.put(
+  "/",
+  [
+    check("name", "Nombre es requerido").not().isEmpty(),
+    check("logo", "Logo es requerido").not().isEmpty(),
+    check("instagram", "Instagram es requerido").not().isEmpty(),
+    check("whatsapp", "Whatsapp es requerido").not().isEmpty(),
+    fileValidator,
+  ],
+  updateProfile
+);
 
 module.exports = router;
