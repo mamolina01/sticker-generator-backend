@@ -82,15 +82,15 @@ const loginUser = async (req, res = response) => {
 	}
 };
 
+//GET: /renew
 const revalidateToken = async (req, res = response) => {
-	const { uid, name } = req;
-
-	//Generar JWT
+	const uid = req.uid;
+	const name = req.name;
+  
+	// Genera un nuevo token y lo retorna
 	const token = await generateJWT(uid, name);
-	res.json({
-		ok: true,
-		token,
-	});
-};
+  
+	res.status(201).json({ ok: true, uid, name, token });
+  };
 
 module.exports = { createUser, loginUser, revalidateToken };
